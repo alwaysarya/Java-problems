@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Subseqtargsum {
+    public static void main(String[] args){
+        int[] arr={1,2,1};
+        find(arr,0,0,2,new ArrayList<>());
+    }
+
+    static void find(int[] arr,int index,int sum,int target,List<Integer>list){
+        if(index== arr.length){
+            if(sum== target){
+                System.out.println(list);
+            }
+            return;
+        }
+
+        //taking element
+        list.add(arr[index]);
+        find(arr, index+1, sum+arr[index], target, list);
+
+        //backtracking
+        list.remove(list.size()-1);
+
+        //do not take
+        find(arr, index+1, sum, target, list);
+    }
+}
+
+//we took all the possibile values 
+//we took 1 and skip 1 
+//we took 1 and skip 2 as there are 3 values
+//that means 1,2,1,(1,1),(1,2),(1,2,1)(2,1),(empty set)
+//started with ()
+//took 1 and skipped ()
+//like that we will do all the possibilities
+//but valid ones are only 2 and (1,1)
+//then we will print the valid target sum of possibilities
