@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Sumofdigitusingrecursion {
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+
+        System.out.print("enter number:");
+        int n= sc.nextInt();
+
+        int result= sumDigits(n);
+
+        System.out.println("sum of digit:"+ result);
+    }
+    static int sumDigits(int n){
+        if(n==0)
+            return 0;
+
+        return(n%10)+ sumDigits(n/10);
+    }
+    
+}
