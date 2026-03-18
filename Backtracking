@@ -1,0 +1,22 @@
+public class Backtrack {
+    public static void main(String[] args){
+        String str= "abc";
+        subsequence(str,0,"");
+    }
+
+    static void subsequence(String str, int index, String current){
+        
+        if(index== str.length()){
+            System.out.println(current);
+            return;
+        }
+        //take character
+        subsequence(str,index+1, current+str.charAt(index));
+
+        //not to take this
+        subsequence(str, index+1, current);
+    }
+    
+}
+//total subsequence 2^n
+//for abc 2^3=8
