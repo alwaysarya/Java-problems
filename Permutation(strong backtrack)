@@ -1,0 +1,30 @@
+public class Permutbacktrack {
+    public static void main(String[]args){
+        String str= "abcdefgh";
+        permute(str,"");
+    }
+    static void permute(String str,String result){
+        if(str.length()==0){
+            System.out.println(result);
+            return;
+        }
+
+        for(int i=0; i< str.length(); i++){
+            char ch=str.charAt(i);
+            String remaining= str.substring(0,i)+str.substring(i+1);
+            permute(remaining,result+ch);
+        }
+
+    }
+    
+}
+
+//makes all possible values of letters
+//step 1 picks one letter like a and remaining bc
+//same for b and c
+//continue with a as we picked up a again for b and c
+//now we will do till end loop
+//now again we will pick another letter b
+//repeat same process till end
+//we will do it till h
+//perform same until we get permutation of8! i.e 40320 combination
