@@ -1,0 +1,35 @@
+public class Subsequence{
+
+    public static void main(String[] args){
+        String str= "abc";
+        printSubsequence(str, 0, "");
+    }
+
+    static void printSubsequence(String str,int index,String current){
+    if(index==str.length()){
+        System.out.println(current);
+        return;
+    }
+
+    //include character
+    printSubsequence(str,index+1,current+str.charAt(index));
+
+    //exclude character
+     printSubsequence(str, index + 1, current);
+}
+}
+
+
+
+//original string abc
+//index is current position
+//current is susequent being built
+
+//static void printSubsequence line is for function break down
+//base case is from if line 9 to 12
+//then calling out recursive callon line 15
+//exclude the character in line 18
+
+
+
+
