@@ -1,0 +1,85 @@
+public class Nqueen {
+    static int count=0;
+    static boolean isSafe(char[][] board, int row, int col, int n){
+
+        //column check
+        for(int i=0; i<row; i++){
+            if(board[i][col]=='Q'){
+                return false;
+            }
+        }
+        //left diagonal 
+        for(int i=row-1, j=col-1; i>=0 && j>=0; i--, j--){
+            if(board[i][j]=='Q'){
+                return false;
+            }
+        }
+        //right diagonal
+        for(int i=row-1, j=col+1; i>=0 && j<n; i--, j++){
+            if(board[i][j]=='Q'){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //backtracking method
+    static void solve(char[][] board, int row, int n){
+        //base case:
+        if(row==n){
+            count++;
+            printBoard(board,n);
+            return;
+        }
+
+        //placing the queen and checking for every column
+        for(int col=0; col<n; col++){
+            if(isSafe(board,row,col,n)){
+
+                //place queen
+                board[row][col]='Q';
+
+                //recursive call
+                solve(board,row+1,n);
+
+                //backtrack
+                board[row][col]='.';
+
+
+            }
+        }
+    } 
+
+    //printing board
+    static void printBoard(char[][] board,int n){
+        System.out.println("Arrangement"+count+":");
+        for(int i=0;i<n;i++){
+            for(int j=0; j<n; j++){
+                System.out.print(board[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println(board);
+    }
+
+    //main method to initialize the board call
+    static void initializeBoard(char[][] board, int n){
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                board[i][j]='.';
+            }
+        }
+    }
+    public static void main(String [] args){
+        int n=8;//size of chess board
+        char[][] board= new char[n][n];
+
+        //board initialization
+        initializeBoard(board, n);
+
+        //call the solving method
+        solve(board,0,n);
+
+        System.out.println("total solutions:"+count);
+    }
+}
