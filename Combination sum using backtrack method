@@ -1,0 +1,30 @@
+import java.util.*;
+public class Combinesum {
+
+    static void find(int[] arr,int index, int target,List<Integer> list){
+
+        //when target is 0
+        if(target== 0){
+            System.out.println(list);
+            return;
+        }
+
+        //no more elements
+        if(index== arr.length)
+            return;
+        //include element
+        if(arr[index]<= target){
+            list.add(arr[index]);
+            find(arr, index, target-arr[index], list);
+            list.remove(list.size()-1);
+        }
+
+        //exclude element
+        find(arr, index+1,target,list);
+    }
+
+    public static void main(String [] args){
+        int[] arr= {1,3,5,7,9,2,4,6,8,10};
+        find(arr,0,10,new ArrayList<>());
+    }
+}
