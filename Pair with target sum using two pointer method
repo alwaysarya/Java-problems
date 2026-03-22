@@ -1,0 +1,36 @@
+import java.util.Arrays;
+public class Pairtargsum {
+    public static void main(String[] args){
+        int [] arr= {2,4,6,-14,1,7,9,-1,5,3,20,-12};
+        int target= 8;
+
+        //array sorting
+        Arrays.sort(arr);
+
+        int left= 0;
+        int right= arr.length-1;
+        boolean found= false;
+
+        while (left<right){
+            int sum= arr[left]+ arr[right];
+
+            if(sum== target){
+                System.out.println(arr[left]+ ", "+ arr[right]);
+                found= true;
+                left++;
+                right--;
+            }
+            else if(sum< target){
+                left++;
+            }
+            else{
+                right--;
+            }
+        }
+
+        if(!found){
+            System.out.println("no pair found");
+        }
+    }
+    
+}
