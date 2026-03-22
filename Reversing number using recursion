@@ -1,0 +1,19 @@
+import java.util.Scanner; 
+
+public class Main24 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number: ");
+        int n = sc.nextInt();
+        reverse(n);
+    }
+
+    static void reverse(int n) {
+        if (n == 0) {
+            return;
+        }
+        int digit = n % 10;
+        System.out.print(digit);
+        reverse(n / 10);
+    }
+}
