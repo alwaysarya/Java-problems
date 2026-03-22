@@ -1,0 +1,28 @@
+public class Maxsumarr {
+    public static void main(String[] args){
+        int[] arr= {2,-4,5,-6,8,9,-6,44,-55,32,1,4,6};
+        
+        //number of consecutive elements
+        int k= 3;
+
+        //sum of first element
+        int Sum=0;
+        for(int i=0; i<k; i++){
+            Sum+= arr[i];
+        }
+
+        //finding max sum of with sum of first sum
+        int maxSum= Sum;
+
+        //remaining sum of elements
+        for(int i=k; i<arr.length; i++){
+            Sum+= arr[i];    //add new elemts
+            Sum-= arr[i-k]; //remove first element
+            maxSum= Math.max(maxSum, Sum);
+        }
+
+        System.out.println("max sum of subarray of size " + k + " is: " + maxSum);
+
+    }
+    
+}
