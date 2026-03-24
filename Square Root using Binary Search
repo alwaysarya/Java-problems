@@ -1,0 +1,40 @@
+public class Squarerootbin {
+    public static void main(String[] args){
+        int n= 180;
+        double result= squareRoot(n,6);// precision value upto 6 decimal places
+        System.out.println("square root of " + n + " is: " + result);
+    }
+
+    public static double squareRoot(int n, int precision) {
+        int left = 1;
+        int right = n;
+        double squareRoot= 0;
+
+        //binary search for integer part
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            //check if mid is a valid square
+            if (mid * mid<= n) {
+                squareRoot= mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        //add decimal pricision
+        double increment= 0.1;
+        for(int i= 0; i< precision; i++){
+            while(squareRoot * squareRoot<= n){
+                squareRoot+= increment;
+            }
+            //backtrack to last valid square root
+            squareRoot-= increment;
+
+            //reduce increment for next decimal places
+            increment/= 10;
+        }
+        return squareRoot;
+    }
+}
