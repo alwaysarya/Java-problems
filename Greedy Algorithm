@@ -1,0 +1,40 @@
+import java.util.Arrays;
+class Activity {
+    int start;
+    int finish;
+
+    public Activity(int start, int finish){
+        this.start= start;
+        this.finish= finish;
+    }
+}
+    public class ActivitySelection{
+        public static void main(String[] args){
+        Activity[] activities={
+            new Activity(1,3),
+            new Activity(2,5),
+            new Activity(4,7),
+            new Activity(6,9),
+        };
+        int maxActivities= selectMaxActivities(activities);
+        System.out.println("maximum number of activities: " + maxActivities);
+    }
+    
+    public static int selectMaxActivities(Activity[] activities){
+        //sort activity based on end time
+        Arrays.sort(activities, (a,b)-> a.finish- b.finish);
+        int count= 1; // count selected activity
+        
+        
+        int lastFinishTime= activities[0].finish; //finish time of last selected activity
+        for(int i= 1; i< activities.length; i++){
+            if(activities[i].start>= lastFinishTime){
+                count++;
+                lastFinishTime= activities[i].finish; //update finish time
+            }
+        }
+        return count;
+    }
+}
+
+    
