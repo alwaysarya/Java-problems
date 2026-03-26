@@ -1,0 +1,32 @@
+public class Climbingstair {
+
+    public static int climbStair(int n){
+
+        //1 step 1 way, 2 steps 2 ways 
+        if(n<=2)
+            return n;
+
+        //dp[i] store number of ways to reach ith step
+        int[] dp= new int[n+1];
+
+        //base case
+        dp[1]= 1;
+        dp[2]= 2;
+
+        //fill dp array using bottom up aproach
+        for(int i= 3; i<= n; i++){
+            dp[i]= dp[i-1] + dp[i-2];
+        }
+
+        //return number of ways to reach nth step
+        return dp[n];
+    }
+  
+    public static void main(String[] args){
+        int n= 15; //number of stairs
+        System.out.println("number of ways to climb " + n + " stairs: " + climbStair(n));
+
+    }
+    
+
+}
