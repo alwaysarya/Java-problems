@@ -1,0 +1,22 @@
+import java.util.PriorityQueue;
+public class Klargestelem {
+    public static void main(String[] args){
+        int [] numbers= {3,5,1,6,99,77,8};
+        int k= 2;
+
+        //find kth element
+        PriorityQueue <Integer> miniHeap= new PriorityQueue<>();
+
+        for(int num: numbers){
+            miniHeap.offer(num); //add current number
+
+            //remove the smallest one
+            if(miniHeap.size()> k){
+                miniHeap.poll();
+            }
+        }
+        //root of the 
+        System.out.println("kth largest element is:"+ miniHeap.peek());
+    }
+    
+}
