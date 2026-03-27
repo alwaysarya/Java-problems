@@ -1,0 +1,38 @@
+import java.util.Arrays;
+public class LongestIncreassubseq {
+    public static void main(String[] args){
+
+        //input array
+        int[] arr= {10,9,7,101,19,12,91};
+
+        //create dp array
+        int[] LongestEndingHere= new int[arr.length];
+
+        //base case
+        for(int i= 0; i<arr.length; i++){
+            LongestEndingHere[i]= 1;
+        }
+
+        int longestSoFar= 1;
+
+        //build sequence
+        for(int current= 1; current< arr.length; current++){
+
+            //check number is bigger
+            for(int previous= 0; previous< current; previous++){
+
+                //if number is bigger than previous and longest sequence the sequence 
+                if(arr[current]> arr[previous]){
+                    LongestEndingHere[current] =
+                    Math.max(LongestEndingHere[current],
+                        LongestEndingHere[previous] + 1);
+                }
+            }
+
+            //keeps track of longest sequence so far
+            longestSoFar= Math.max(longestSoFar, LongestEndingHere[current]);
+        }
+        System.out.println("length incresing susequence length: " +longestSoFar);
+    }
+    
+}
