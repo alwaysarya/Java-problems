@@ -1,0 +1,44 @@
+import java.util.*;
+public class Dfs {
+    public static void exploreDepthFirst(int currentNode,boolean[] visited,ArrayList<ArrayList<Integer>> graph) {
+
+        //mark node as visited
+        visited[currentNode]= true;
+
+        //print the current node
+        System.out.print(currentNode + " ");
+
+        //explore neigghbours
+        for(int neighbor: graph.get(currentNode)){
+
+            //if neighbor is not visited explore it
+            if(!visited[neighbor]){
+                exploreDepthFirst(neighbor, visited, graph);
+            }
+        }
+    }
+    public  static void main(String[] args){
+        int numberOfNodes= 6;
+
+        //create graph
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+
+        for(int i= 0; i< numberOfNodes; i++){
+            graph.add(new ArrayList<>());
+        }
+
+        //adding edges
+        graph.get(0).add(1);
+        graph.get(1).add(2);
+        graph.get(2).add(3);
+        graph.get(3).add(4);
+        graph.get(4).add(5);
+
+        //create visited array
+        boolean[] visited = new boolean[numberOfNodes];
+        System.out.print("DFS traversal: ");
+
+        //explore graph
+        exploreDepthFirst(0, visited, graph);
+    }
+}
