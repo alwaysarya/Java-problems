@@ -1,0 +1,75 @@
+import java.util.*;
+public class Dijkstra {
+
+    static class Edge{
+        int destination;
+        int weight;
+
+        //construction
+        public Edge(int destination, int weight){
+            this.destination= destination;
+            this.weight= weight;
+        }
+    }
+    public static void main(String[] args){
+        int numberOfNodes= 6;
+        
+        //graph representation
+        ArrayList<ArrayList<Edge>>  graph= new ArrayList<>();
+        
+        for(int i= 0; i< numberOfNodes; i++){
+            graph.add(new ArrayList<>());
+        }
+        //adding edges
+        graph.get(0).add(new Edge(1, 4));
+        graph.get(0).add(new Edge(2, 1));
+        graph.get(0).add(new Edge(1, 2));
+        graph.get(0).add(new Edge(2, 4));
+        graph.get(1).add(new Edge(3, 5));
+        graph.get(2).add(new Edge(3, 2));
+        graph.get(3).add(new Edge(4, 1));
+        graph.get(4).add(new Edge(5, 3));
+        
+        //create distance array
+        int [] distance= new int[numberOfNodes];
+        Arrays.fill(distance, Integer.MAX_VALUE);
+         distance[0] = 0;
+         
+         
+         //create priority queue
+        PriorityQueue<Edge> pq= new PriorityQueue<>((a, b) -> a.weight - b.weight);
+        pq.add(new Edge(0, 0));
+        
+        
+        //dijkstra algorithm 
+        while(!pq.isEmpty()){
+            Edge currentEdge= pq.poll();
+             int currentNode= currentEdge.destination;
+            int currentDistance= currentEdge.weight;
+            
+            
+            //if the distance is greater than the current distance, skip'
+            if(currentDistance > distance[currentNode]){
+                continue;
+            }
+            
+            
+            //explore neighbors
+            for(Edge neighbor : graph.get(currentNode)){
+                int newDistance= currentDistance + neighbor.weight;
+
+                //if new distance is less than the current distance update distance
+                if(newDistance < distance[neighbor.destination]){
+                    distance[neighbor.destination] = newDistance;
+                    pq.add(new Edge(neighbor.destination, newDistance));
+                }
+            }
+        }
+        
+        //print distance
+        System.out.println("shortest distance from node 0:");
+        for(int i= 0; i< numberOfNodes; i++){
+            System.out.println("to node " + i + " : " + distance[i]);
+        }
+    }
+}
